@@ -54,4 +54,4 @@ function sleep_until {
 }
 
 # Run forever using $difference interval
-bash -c "while true; do /opt/homer_mysql_rotate.pl; set -e; sleep_until $ROTATION_TIME; set +e; done"   
+bash -c "while true; do /opt/homer_mysql_rotate; set -e; sleep_until $ROTATION_TIME; set +e; done"   
