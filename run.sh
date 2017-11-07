@@ -44,14 +44,16 @@ perl -p -i -e "s/localhost/$DB_HOST/" $PATH_ROTATION_CONFIG
 # done
 
 # Init rotation
-/opt/homer_mysql_rotate.pl
+/opt/homer_mysql_rotate
 
 # Sleep Function
-function sleep_until {
+sleep_until ()
+{
   seconds=$(( $(date -d "$*" +%s) - $(date +%s) )) # Use $* to eliminate need for quotes
   echo "Sleeping for $seconds seconds"
   sleep $seconds
 }
 
 # Run forever using $difference interval
+ROTATION_TIME="${ROTATION_TIME:-04:00}"
 bash -c "while true; do /opt/homer_mysql_rotate; set -e; sleep_until $ROTATION_TIME; set +e; done"   
